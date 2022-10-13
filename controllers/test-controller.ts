@@ -16,7 +16,7 @@ const getChannel = async (req: Request, res: Response) => {
     client.on('ready', () => {
         console.log(`Logged in as ${client.user.tag}!`);
     });
-    client.login('MTAzMDExNjc1MTE0NjQ4MzgxMw.GL3Jvo.JtrnNeZdX53up6y3fSVA53zDbnlJ5ebBB4LLsg')
+    client.login()
     // return res.status(200).json({
     //     message: channel.send('Hello World')
     // })
