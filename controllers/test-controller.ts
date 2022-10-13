@@ -1,36 +1,25 @@
 import { Request, Response } from 'express';
-import axios, { AxiosResponse } from 'axios';
+const {
+    Client,
+    Intents
+} = require('discord.js');
+const client = new Client({
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+
+        ],
+});
 
 
-interface Post {
-    userId: Number;
-    id: Number;
-    title: String;
-    body: String;
-}
-
-// getting all posts
-const getPosts = async (req: Request, res: Response) => {
-    // get some posts
-    let result: AxiosResponse = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
-    let posts: [Post] = result.data;
-    return res.status(200).json({
-        message: posts
+const getChannel = async (req: Request, res: Response) => {
+    client.on('ready', () => {
+        console.log(`Logged in as ${client.user.tag}!`);
     });
-};
-
-
-const testAdd = (req: Request, res: Response) => {
-    let title: string = req.body.title;
-    let body: string = req.body.body;
-
-    let response = {
-        title: title,
-        body: body
-    }
-    return res.status(200).json({
-        message: response
-    })
+    client.login('MTAzMDExNjc1MTE0NjQ4MzgxMw.GL3Jvo.JtrnNeZdX53up6y3fSVA53zDbnlJ5ebBB4LLsg')
+    // return res.status(200).json({
+    //     message: channel.send('Hello World')
+    // })
 }
 
-export default { testAdd, getPosts };
+export default { getChannel };
